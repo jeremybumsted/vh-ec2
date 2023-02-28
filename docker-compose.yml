@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Minecraft Vault Hunters 3rd Edition
+  vault-hunters:
+    image: wotupfoo/vault-hunters:latest # use latest, no reason to pin a version
+
+# If you are running the server with the user `root` you need to uncomment this line
+#    user: root
+
+# Enable these options for console access inside the container
+    tty: true
+    stdin_open: true
+
+#   Map the network ports from the container to the host so that it can be accessed
+    ports:
+        # Minecraft Server Port
+        - "25565:25565"
+        # Remote admin control (RCON) Port
+#        - "25575:25575"
+
+# The persistent storage directory to save the install. You MUST have this, otherwise your entire server
+# will be lost if you stop the container.
+    volumes:
+      - ./vault-hunters:/data
+
+# Environment variable overrides from the defaults.
+    environment:
+# You must have this set to true to accept the End User License Agreement terms and conditions
+        - EULA=true
+# The amount of system memory the server is allowed to use. Vault Hunters needs at least 6GB.
+        - JVM_OPTS=-Xmx6g
+# This happens to be the world I chose to use. Comment it out to make it random or put in your own value.
+        - LEVELSEED="Y3RodWx1dGhvbmd3aGlzcGVyaGljY3Vw"
+        - MOTD="Papaya Vault Hunters"
+
+# default enironment variable values
+#        - JVM_OPTS : "-Xms2g -Xmx6g"
+#        - JAVA_HOME : "/usr/local/openjdk-17"
+#        - JAVA_VERSION : "17"
+#        - MOTD : "Vault Hunters 3rd Edition Powered by Docker"
+#        - LEVEL : "Vault-Hunters"
+#        - LEVELSEED : default is random
+#        - GAMEMODE : "survival"
+#        - DIFFICULTY : "normal"
