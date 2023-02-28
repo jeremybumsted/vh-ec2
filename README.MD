@@ -14,8 +14,15 @@ The docker-compose service uses the latest image from [wotupfoo/vault-hunters](h
 
 The service is deployed using standard `docker-compose` commands
 
+
+Start the service
 ```shell
 docker-compose start
 ```
 
-It requires a mount directory of `vault-hunters` in the working directory of the compose file to store persistent server data and is freely modifiable.
+Stop the service
+```shell
+docker-compose stop
+```
+
+It requires a mount directory of `vault-hunters` in the working directory of the compose file to store persistent server data (this is freely modifiable)
